@@ -1,0 +1,47 @@
+# Ruby dependencies (installed locally)
+vendor/
+.bundle/
+
+# Ruby version management
+.ruby-version
+.rbenv-version
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Backup files
+*.bak
+*.backup
+
+# Test coverage
+coverage/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Personal configuration files
+config.local.rb
+settings.local.yml 

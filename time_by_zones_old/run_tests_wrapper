@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+#
+# Wrapper script for running time_by_zones tests
+# Automatically uses bundle exec to ensure proper gem loading
+#
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Change to the script directory
+cd "$SCRIPT_DIR"
+
+# Check if bundle is available
+if ! command -v bundle &> /dev/null; then
+    echo "Error: bundle is not available. Please install bundler first."
+    exit 1
+fi
+
+# Check if gems are installed
+if [ ! -d "vendor/bundle" ]; then
+    echo "Installing gems locally..."
+    bundle install --path vendor/bundle
+fi
+
+# Function to show usage
+show_usage() {
+    echo "Usage: $0 [option]"
+    echo ""
+    echo "Options:"
+    echo "  all          Run all tests (recommended)"
+    echo "  unit         Run Test::Unit style tests only"
+    echo "  spec         Run RSpec style tests only"
+    echo "  quick        Run quick functionality tests only"
+    echo "  help         Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $0 all       # Run comprehensive test suite"
+    echo "  $0 unit      # Run Test::Unit tests"
+    echo "  $0 spec      # Run RSpec style tests"
+    echo "  $0 quick     # Run quick tests only"
+}
+
+# Parse command line arguments
+case "${1:-all}" in
+    "all"|"")
+        echo "Running comprehensive test suite..."
+        echo "=" * 50
+        bundle exec ruby run_tests.rb
+        ;;
+    "unit")
+        echo "Running Test::Unit style tests..."
+        echo "=" * 50
+        bundle exec ruby test_time_by_zones.rb
+        ;;
+    "spec")
+        echo "Running RSpec style tests..."
+        echo "=" * 50
+        bundle exec ruby spec_time_by_zones.rb
+        ;;
+    "quick")
+        echo "Running quick functionality tests..."
+        echo "=" * 50
+        bundle exec ruby quick_test.rb
+        ;;
+    "help"|"-h"|"--help")
+        show_usage
+        ;;
+    *)
+        echo "Unknown option: $1"
+        echo ""
+        show_usage
+        exit 1
+        ;;
+esac 
