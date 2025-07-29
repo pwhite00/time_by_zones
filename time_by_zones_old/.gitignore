@@ -44,4 +44,18 @@ coverage/
 
 # Personal configuration files
 config.local.rb
-settings.local.yml 
+settings.local.yml *.rpm
+*.doc
+*.tar
+*.gz
+*.tgz
+*.zip
+*.bz2
+*.pdf
+*.bin
+*.BIN
+*.rar
+.idea
+*/wb/*
+*.test
+*.note

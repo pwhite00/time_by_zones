@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# Wrapper script for time_by_zones.rb
+# Automatically uses bundle exec to ensure proper gem loading
+#
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Change to the script directory
+cd "$SCRIPT_DIR"
+
+# Run the timezone script with bundle exec
+bundle exec ruby time_by_zones.rb "$@" 
